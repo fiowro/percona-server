@@ -5,7 +5,19 @@
 =============================================================
 
 +-------------------------------------------------------------------------------------------------------------+
-|:Upstream bug: :mysqlbug:`82967`                                                                             |  
+|:Upstream bug: :mysqlbug:`53588` - Blackhole: Specified key was too long; max key length is 1000 bytes       |
+|:Launchpad bug: :bug:`173049`                                                                                |
+|:Upstream state: Verified                                                                                    |
+|:Fix Released: :rn:`5.6.38-83.1`                                                                             |
+|:Upstream fix: N/A                                                                                           |
++-------------------------------------------------------------------------------------------------------------+
+|:Upstream bug: :mysqlbug:`82876` - Fulltext search can not find word which contains "," or "."               |
+|:Launchpad bug: :bug:`1689268`                                                                               |
+|:Upstream state: Verified                                                                                    |
+|:Fix Released: :rn:`5.6.38-83.1`                                                                             |
+|:Upstream fix: N/A                                                                                           |
++-------------------------------------------------------------------------------------------------------------+
+|:Upstream bug: :mysqlbug:`82967`                                                                             |
 |:Launchpad bug: :bug:`1622992`                                                                               |
 |:Upstream state: N/A                                                                                         |
 |:Fix Released: :rn:`5.6.37-82.2`                                                                             |
