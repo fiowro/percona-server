@@ -1,0 +1,129 @@
+.. _myrocks_information_schema:
+
+============================
+|MyRocks| Information Schema
+============================
+
+As of |Percona Server| :rn:`5.7.19-17`, a set of |MyRocks| information_schema tables is exposed to the user.
+
+.. table:: ROCKSDB_GLOBAL_INFO
+ 
+   :version 5.7.19-17: Implemented
+   :column Binlog: shows file, current position, and the last executed GTID
+   :column DDL_DROP_INDEX_ONGOING: Shows index currently being dropped, if any
+   :column CF_FLAGS: Shows cf ID and name
+   :column MAX_INDEX_ID: Shows current max index ID
+
+.. table:: ROCKSDB_CFSTATS
+
+   :version 5.7.19-17: Implemented
+   :column CF_NAME: shows name of the column family
+   :column STAT_TYPE:
+   :column VALUE:
+
+This table contains statistics about currently existing column families. 
+
+.. table:: ROCKSDB_TRX
+
+   :version 5.7.19-17: Implemented
+   :column TRANSACTION_ID: The RocksDB assigned transaction ID.
+   :column STATE: The state of the RocksDB transaction. One of [STARTED, AWAITING_PREPARE, PREPARED, AWAITING_COMMIT, COMMITED, AWAITING_ROLLBACK, ROLLEDBACK]
+   :column NAME: The name of the transaction. Only used in two-phase commit.
+   :column WRITE_COUNT: How many writes this transaction is making.
+   :column LOCK_COUNT: The number of row locks this transaction is holding.
+   :column TIMEOUT_SEC: The timeout period, in seconds, for this transaction.
+   :column WAITING_TXN_ID: The RocksDB ID of the transaction this transaction is waiting on.
+   :column IS_REPLICATION: Is this a replication thread.
+    SKIP_TRX_API: Is this a replication thread which skips RocksDB's transaction/locking layer.
+   :column READ_ONLY: Is a read-only transaction.
+   :column HAS_DEADLOCK_DETECTION: Does this transaction attempt to detect deadlocks.
+   :column NUM_ONGOING_BULKLOAD: Number of bulkloads this transaction is processing.
+   :column THREAD_ID: The system thread id for the transaction.
+   :column QUERY: The SQL query being executed.
+
+This table holds information about outstanding transactions.
+
+.. table:: ROCKSDB_CF_OPTIONS
+
+   :version 5.7.19-17: Implemented
+   :column CF_NAME: shows name of the column family
+   :column OPTION_TYPE:
+   :column VALUE:
+
+Information about the options set for each column family.
+
+.. table:: ROCKSDB_COMPACTION_STATS
+
+   :version 5.7.19-17: Implemented
+   :column
+
+.. table:: ROCKSDB_DBSTATS
+
+   :version 5.7.19-17: Implemented
+   :column STAT_TYPE:
+   :column VALUE:
+
+Provides information about the database such as background errors, number of snapshots currently open, how long the current snapshot has been open, and block cache usage.
+
+.. table:: ROCKSDB_DDL
+
+   :version 5.7.19-17: Implemented
+   :column TABLE_SCHEMA: database for index entry
+   :column TABLE_NAME: table for index entry
+   :column PARTITION_NAME: partition name, if any
+   :column INDEX_NAME: index name
+   :column COLUMN_FAMILY: column family the index belongs to
+   :column INDEX_NUMBER: index number
+   :column INDEX_TYPE: primary, secondary, or hidden index (corresponds to 1,2,3)
+   :column KV_FORMAT_VERSION: format version of the key and value
+   :column CF: column family corresponding to index
+   
+This table contains information about the currently existing tables/indexes contained in RocksDB.
+
+.. table:: ROCKSDB_INDEX_FILE_MAP
+
+   :version 5.7.19-17: Implemented
+   :column COLUMN_FAMILY: the index's column family contained in the SST file
+   :column INDEX_NUMBER: the index id contained in the SST file
+   :column SST_NAME: the name of the SST file containing some indexes
+   :column NUM_ROWS: the number of entries of this index id in this SST file
+   :column DATA_SIZE: the data size stored in this SST file for this index id
+   :column ENTRY_DELETES: the number of delete markers
+   :column ENTRY_SINGLEDELETES: the number of single delete markers
+   :column ENTRY_MERGES: the number of merge operator keys
+   :column ENTRY_OTHERS: number of keys that are not the above
+   :column DISTINCT_KEYS_PREFIX: used for calculating cardinality of an index
+
+.. table:: ROCKSDB_LOCK
+
+   :version 5.7.19-17: Implemented
+   :column COLUMN_FAMILY_ID: the column family id to which the lock applies.
+   :column TRANSACTION_ID: the id of the Rocksdb transaction holding the lock.
+   :column KEY: the key value being locked.
+
+holds information about row locks currently being held by rocksdb.
+   
+.. table:: ROCKSDB_PERF_CONTEXT
+
+   :version 5.7.19-17: Implemented
+   :column TABLE_SCHEMA:
+   :column  TABLE_NAME:
+   :column  PARTITION_NAME:
+   :column  STAT_TYPE:
+   :column  VALUE:
+
+Contains performance statistics for RocksDB. These counters can be enabled through the :variable:`rocksdb_perf_context_level` variable.
+
+.. table:: ROCKSDB_PERF_CONTEXT_GLOBAL
+
+   :version 5.7.19-17: Implemented
+   :column STAT_TYPE:
+   :column VALUE:
+   
+.. table:: ROCKSDB_DEADLOCK
+
+   :version 5.7.20-18: Implemented
+   :column
+
+ This table tracks historic deadlocks based on the functionality introduced in
+"Display Deadlock Paths".
