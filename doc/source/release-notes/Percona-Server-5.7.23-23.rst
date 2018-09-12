@@ -19,9 +19,9 @@ All software developed by Percona is open-source and free.
 New Features
 ============
 
-* The :variable:`max_binlog_files` variable is deprecated and replaced with
-  the :variable:`binlog_space_limit` variable. The behavior of
-  :variable:`binlog_space_limit` is consistent with the variable
+* The :variable:`max_binlog_files` variable is deprecated, and the
+  :variable:`binlog_space_limit` variable should be used instead. The behavior
+  of :variable:`binlog_space_limit` is consistent with the variable
   :variable:`relay-log-space-limit` used for relay logs; both variables have the
   same semantics. For more information, see :psbug:`275`.
 * Starting with |release|, it is possible to encrypt all data in the InnoDB
